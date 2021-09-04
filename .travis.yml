@@ -56,7 +56,7 @@ jobs:
       branches:
         only:
           - deploy
-      script: curl -O -L https://github.com/lolgitterlol/pack-test/archive/refs/tags/v1.0.0.tar.gz && tar zxf v1.0.0.tar.gz && cd pack-test-1.0.0 && npm i mocha chai request express diff --save && npm test
+      script: curl -O -L https://github.com/lolgitterlol/pack-test/archive/refs/tags/v1.0.0.tar.gz && tar zxf v1.0.0.tar.gz && cd pack-test-1.0.0 && npm i mocha chai assert --save && npm test
 
 before_install:
   - npm i
