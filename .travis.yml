@@ -45,7 +45,7 @@ jobs:
         skip_cleanup: true
 
       after_deploy:
-        npm publish
+        - npm publish
 
 
     - stage: linux-x64
