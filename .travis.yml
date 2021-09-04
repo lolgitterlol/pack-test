@@ -1,0 +1,69 @@
+env:
+  global:
+    - npm_ver=v`cat package.json | grep version | head -1 | sed 's/^.*[^0-9]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/'`
+
+before_install:
+  - npm install
+  - npm cache clean --force
+
+script:
+  - npm test
+
+jobs:
+  include:
+    - os: linux
+      if: branch = master
+      language: node_js
+      node_js: "6.16"
+      python: "2.7"
+      branches:
+         only: master
+
+
+    - stage: deploy
+      if: branch = deploy
+      os: linux
+      language: generic
+      before_install: skip
+      script: skip
+      branches:
+        only:
+          deploy
+
+      before_deploy:
+        - git config --local user.name "lolgitterlol"
+        - git config --local user.email "lolgitterlol@gmail.com"
+        - npm i
+        - export TRAVIS_TAG=$npm_ver
+        - git tag $npm_ver
+
+      deploy:
+        provider: releases
+        on:
+          branch: deploy
+        api_key: $GITHUB_OAUTH_TOKEN
+        skip_cleanup: true
+
+
+      # - stage: linux-x64
+      # if: branch = deploy
+      # os: osx
+      # language: generic
+      # before_install: skip
+      # branches:
+      #   only:
+      #     - deploy
+      # script: curl -O -L https://github.com/lolgitterlol/lolgitter/releases/download/$npm_ver/hapi-server-$npm_ver-linux-x64.tgz && tar zxf hapi-server-$npm_ver-linux-x64.tgz && cd hapi-server-$npm_ver && node server.js test/server-test.js --test
+
+before_install:
+  - npm i
+
+script:
+  - npm test
+
+notifications:
+  email:
+    recipients:
+      - ksreddy9945@gmail.com
+  on_success: change
+  on_failure: always
