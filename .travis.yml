@@ -14,7 +14,6 @@ jobs:
     - os: linux
       if: branch = master
       language: node_js
-      node_js: "6.16"
       python: "2.7"
       branches:
          only: master
