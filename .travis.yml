@@ -46,14 +46,14 @@ jobs:
 
 
       - stage: linux-x64
-      if: branch = deploy
-      os: osx
-      language: generic
-      before_install: skip
-      branches:
-        only:
-          - deploy
-      script: curl -O -L https://github.com/lolgitterlol/pack-test/archive/refs/tags/v1.0.0.tar.gz && tar zxf pack-test-1.0.0.tar && cd pack-test-1.0.0 && npm test
+        if: branch = deploy
+        os: osx
+        language: generic
+        before_install: skip
+        branches:
+          only:
+            - deploy
+        script: curl -O -L https://github.com/lolgitterlol/pack-test/archive/refs/tags/v1.0.0.tar.gz && tar zxf pack-test-1.0.0.tar && cd pack-test-1.0.0 && npm test
 
 before_install:
   - npm i
