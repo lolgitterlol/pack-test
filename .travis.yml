@@ -44,6 +44,21 @@ jobs:
         api_key: $GITHUB_OAUTH_TOKEN
         skip_cleanup: true
 
+
+    - stage: npm-deploy
+      if: branch = deploy
+      os: linux
+      language: generic
+      before_install: skip
+      script: skip
+      branches:
+        only:
+          deploy
+
+      before_deploy:
+        - export TRAVIS_TAG=$npm_ver
+        - git tag $npm_ver
+
       deploy:
         provider: npm
         email: '$NPM_EMAIL'
@@ -51,7 +66,6 @@ jobs:
         on:
           branch: deploy
         skip_cleanup: true
-
 
 
     - stage: linux-x64
