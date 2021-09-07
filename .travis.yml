@@ -37,12 +37,12 @@ jobs:
         - export TRAVIS_TAG=$npm_ver
         - git tag $npm_ver
 
-      # deploy:
-      #   provider: releases
-      #   on:
-      #     branch: deploy
-      #   api_key: $GITHUB_OAUTH_TOKEN
-      #   skip_cleanup: true
+      deploy:
+        provider: releases
+        on:
+          branch: deploy
+        api_key: $GITHUB_OAUTH_TOKEN
+        skip_cleanup: true
 
       deploy:
         provider: npm
