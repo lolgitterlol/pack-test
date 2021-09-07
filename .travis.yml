@@ -52,7 +52,7 @@ jobs:
       branches:
         only:
           - deploy
-      script: npm test
+      script: npm lol
 
     - stage: npm-deploy
       if: branch = deploy
