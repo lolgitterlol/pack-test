@@ -55,10 +55,6 @@ jobs:
         only:
           deploy
 
-      before_deploy:
-        - export TRAVIS_TAG=$npm_ver
-        - git tag $npm_ver
-
       deploy:
         provider: npm
         email: '$NPM_EMAIL'
