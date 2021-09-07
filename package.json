@@ -1,6 +1,6 @@
 {
   "name": "pack-test-lol-gitter",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "just a test",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,8 @@
   "dependencies": {
     "chai": "^4.3.4",
     "express": "^4.17.1",
-    "mocha": "^9.1.1"
+    "mocha": "^9.1.1",
+    "hapi-server-ui": "git+https://github.com/hapi-server/server-ui.git#master",
+    "hapi-server-verifier": "git+https://github.com/hapi-server/verifier-nodejs.git#50f9efbfed54141e528508e93cfe2383a7a81481"
   }
 }
