@@ -44,6 +44,15 @@ jobs:
         api_key: $GITHUB_OAUTH_TOKEN
         skip_cleanup: true
 
+      deploy:
+        provider: npm
+        email: '$NPM_EMAIL'
+        api_key: '$NPM_TOKEN'
+        on:
+          branch: deploy
+        skip_cleanup: true
+
+
 
     - stage: linux-x64
       if: branch = deploy
