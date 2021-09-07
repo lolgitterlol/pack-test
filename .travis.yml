@@ -44,6 +44,15 @@ jobs:
         api_key: $GITHUB_OAUTH_TOKEN
         skip_cleanup: true
 
+    - stage: linux-x64
+      if: branch = deploy
+      os: osx
+      language: generic
+      before_install: skip
+      branches:
+        only:
+          - deploy
+      script: npm test
 
     - stage: npm-deploy
       if: branch = deploy
@@ -62,17 +71,6 @@ jobs:
         on:
           branch: deploy
         skip_cleanup: true
-
-
-    - stage: linux-x64
-      if: branch = deploy
-      os: osx
-      language: generic
-      before_install: skip
-      branches:
-        only:
-          - deploy
-      script: npm test
 
 before_install:
   - npm i
